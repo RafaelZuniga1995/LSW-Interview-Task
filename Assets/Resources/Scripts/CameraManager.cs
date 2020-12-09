@@ -39,4 +39,9 @@ public class CameraManager : MonoBehaviour
 
         mainCamera.transform.position = new Vector3(x, y + 0, - 10);
     }
+
+    internal void setCameraBounds(BoxCollider2D newCameraBounds)
+    {
+        this.camBoundsBox2D = newCameraBounds;
+    }
 }
