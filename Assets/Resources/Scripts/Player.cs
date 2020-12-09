@@ -19,6 +19,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("Player.Update() | KeyCode.E");
+            if (WidgetManager.singleton.getCurrentInteractSign() != null)
+            {
+                Debug.Log("Player.Update() | getCurrentInteractSign() != null | name: " + WidgetManager.singleton.getCurrentInteractSign().name);
+                if (WidgetManager.singleton.getCurrentInteractSign().name.Equals("MerchantSign"))
+                {
+                    WidgetManager.singleton.setState(WidgetManager.MERCHANT_STATE);
+                }
+            }
+        }
     }
 }
