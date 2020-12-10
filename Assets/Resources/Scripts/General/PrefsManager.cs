@@ -17,13 +17,7 @@ public class PrefsManager : MonoBehaviour
 
     internal static int getNumCoins()
     {
-        return PlayerPrefs.GetInt(COINS_KEY, 0);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        return PlayerPrefs.GetInt(COINS_KEY, 25);
     }
 
     // Keep track of owned items in a string and store in PlayerPrefs
@@ -56,6 +50,13 @@ public class PrefsManager : MonoBehaviour
         
     }
 
+    internal static void removeItemFromSerializedList(String itemName)
+    {
+        String newString = PlayerPrefs.GetString(SERIALIZED_ITEM_LIST_KEY, "").Replace(itemName + ",", "");
+        PlayerPrefs.SetString(SERIALIZED_ITEM_LIST_KEY, newString);
+        PlayerPrefs.Save();
+    }
+
     internal static int getItemQty(string itemName)
     {
         return PlayerPrefs.GetInt(itemName, 0);
@@ -64,5 +65,36 @@ public class PrefsManager : MonoBehaviour
     internal static String[] getAllOwnedIems()
     {
         return PlayerPrefs.GetString(SERIALIZED_ITEM_LIST_KEY, "").Split(',');
+    }
+
+    internal static bool attemptToSellItem(string itemName)
+    {
+        int qty = getItemQty(itemName);
+        if (qty > 0)
+        {
+
+            int newQty = qty - 1;
+            PlayerPrefs.SetInt(itemName, newQty);
+            PlayerPrefs.Save();
+            return true;
+        }
+        return false;
+    }
+
+    internal static void addCoins(int numCoins)
+    {
+        PlayerPrefs.SetInt(COINS_KEY, getNumCoins() + numCoins);
+        PlayerPrefs.Save();
+    }
+
+    internal static bool attemptCoinPurchase(int cost)
+    {
+        if (cost <= getNumCoins())
+        {
+            PlayerPrefs.SetInt(COINS_KEY, getNumCoins() - cost);
+            PlayerPrefs.Save();
+            return true;
+        }
+        return false;
     }
 }

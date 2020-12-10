@@ -36,7 +36,7 @@ public class WidgetManager : MonoBehaviour
                 merchant.SetActive(false);
                 break;
             case MERCHANT_STATE:
-                hud.SetActive(false);
+                //hud.SetActive(false);
                 merchant.SetActive(true);
                 interactSign.SetActive(false);
                 break;
@@ -57,8 +57,18 @@ public class WidgetManager : MonoBehaviour
         return hud.transform.Find("Inventory").GetComponent<Inventory>();
     }
 
+    internal int getState()
+    {
+        return currentState;
+    }
+
     internal MerchantWidget getMerchantWidget()
     {
         return merchant.GetComponent<MerchantWidget>();
+    }
+
+    internal bool isState(int state)
+    {
+        return currentState == state;
     }
 }

@@ -31,15 +31,7 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        for (int i = 0; i < ownedItems.transform.childCount; i++)
-        {
-            Transform slot = ownedItems.transform.GetChild(i);
-            GameObject icon = slot.Find("Icon").gameObject;
-            GameObject qty = slot.Find("qty").gameObject;
-            qty.GetComponent<TextMeshProUGUI>().text = PrefsManager.getItemQty(i) + "x";
-        }
-        */
+        
     }
 
     internal void addWood(int v)
@@ -98,7 +90,7 @@ public class Inventory : MonoBehaviour
 
     }
 
-    private Sprite getSprite(string itemName)
+    public Sprite getSprite(string itemName)
     {
         foreach (Sprite sprite in allItemSprites)
         {
@@ -107,5 +99,25 @@ public class Inventory : MonoBehaviour
                 return sprite;
         }
         return null;
+    }
+
+    internal bool hasEmptySlots()
+    {
+        Transform emptySlot = null;
+        for (int i = 0; i < ownedItems.transform.childCount; i++)
+        {
+            Transform slot = ownedItems.transform.GetChild(i);
+            if (slot.childCount == 0)
+            {
+                emptySlot = slot;
+                break;
+            }
+        }
+
+        if (emptySlot != null)
+        {
+            return true;
+        }
+        return false;
     }
 }

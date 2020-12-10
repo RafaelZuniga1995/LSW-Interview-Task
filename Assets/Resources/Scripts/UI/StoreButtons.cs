@@ -1,18 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StoreButtons : MonoBehaviour
 {
-    [SerializeField] public MerchantWidget merchantWidget;
-    public void setBuy()
+    public void exit()
     {
-        WidgetManager.singleton.getMerchantWidget().setState(MerchantWidget.BUY_STATE);
+        WidgetManager.singleton.setState(WidgetManager.HUD_STATE);
     }
 
-    public void setSell()
+    public void buyItem()
     {
-        WidgetManager.singleton.getMerchantWidget().setState(MerchantWidget.SELL_STATE);
+
+        WidgetManager.singleton.getMerchantWidget().buySelectedItem();
+    }
+
+    public void sellItem()
+    {
+        WidgetManager.singleton.getMerchantWidget().sellSelectedItem();
     }
 
     public void showHats()
@@ -35,4 +41,5 @@ public class StoreButtons : MonoBehaviour
     {
         WidgetManager.singleton.getMerchantWidget().setState(MerchantWidget.BOOTS_STATE);
     }
+
 }

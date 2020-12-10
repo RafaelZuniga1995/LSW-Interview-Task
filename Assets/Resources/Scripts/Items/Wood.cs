@@ -34,7 +34,7 @@ public class Wood : MonoBehaviour
     {
         Vector3Int tilemapPos = tilemap.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
-        Debug.Log("Wood.OnMouseDown()" + tilemap.GetTile(tilemap.WorldToCell(tilemapPos)).name);
+        //Debug.Log("Wood.OnMouseDown()" + tilemap.GetTile(tilemap.WorldToCell(tilemapPos)).name);
         WidgetManager.singleton.getInventory().addToInventory(tilemap.GetTile(tilemap.WorldToCell(tilemapPos)).name);
         tilemap.SetTile(tilemap.WorldToCell(tilemapPos), null);
 

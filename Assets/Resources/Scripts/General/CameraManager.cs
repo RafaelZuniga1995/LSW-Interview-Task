@@ -30,8 +30,18 @@ public class CameraManager : MonoBehaviour
         //  cameraBounds.GetComponent<Renderer>().bounds.max.x - mainCamera.GetComponent<Camera>().orthographicSize / 2);
 
 
-        x = Mathf.Clamp(x, camBoundsBox2D.bounds.min.x + horzExtent,
-            camBoundsBox2D.bounds.max.x - horzExtent);
+        //x = Mathf.Clamp(x, camBoundsBox2D.bounds.min.x + horzExtent,
+          //  camBoundsBox2D.bounds.max.x - horzExtent);
+
+        if (x - horzExtent < camBoundsBox2D.bounds.min.x)
+        {
+            x = camBoundsBox2D.bounds.min.x + horzExtent;
+        }
+
+        if (x + horzExtent > camBoundsBox2D.bounds.max.x)
+        {
+            x = camBoundsBox2D.bounds.max.x - horzExtent;
+        }
 
 
         y = Mathf.Clamp(y, camBoundsBox2D.bounds.min.y + vertExtent,
