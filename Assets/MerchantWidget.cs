@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -60,7 +61,13 @@ public class MerchantWidget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        for (int i = 0; i < ownedItems.transform.childCount; i++)
+        {
+            Transform slot = ownedItems.transform.GetChild(i);
+            GameObject icon = slot.Find("Icon").gameObject;
+            GameObject qty = slot.Find("qty").gameObject;
+            //qty.GetComponent<TextMeshProUGUI>().text = PrefsManager.getItemQty(i) + "x";
+        }
     }
 
     public void setState(int state)
